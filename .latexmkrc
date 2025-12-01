@@ -1,12 +1,14 @@
-# --- Sorties & dossiers ---
-$out_dir = 'build';            # PDF, logs finaux utiles (.log, .bbl, etc.)
-$aux_dir = 'build/.aux';       # Auxiliaires (aux, fls, fdb_latexmk, etc.)
+$out_dir = 'build';
+$aux_dir = 'build/.aux';
 
-# --- Bibliographie (BibTeX) ---
-$bibtex = 'bibtex %O %B';
+# PDF mode
+$pdf_mode = 1;
 
-# --- Nettoyage : étends ce que -c / -C suppriment ---
-push @clean_ext, qw(synctex.gz bbl run.xml bcfl);
+# BibTeX
+$bibtex_use = 1;
+
+# Nettoyage
+push @clean_ext, qw(synctex.gz bbl run.xml bcf);
 push @clean_full_ext, qw(
   aux fls fdb_latexmk log toc lof lot out nav snm
   idx ilg ind glg glo gls acr acn alg ist xdy
@@ -14,12 +16,10 @@ push @clean_full_ext, qw(
   blg bcf xml
 );
 
-# --- Paquets spécifiques ---
-# minted (Pygments)
-$pdflatex = 'pdflatex -shell-escape -interaction=nonstopmode -synctex=1 %O %S';
+# Compilation (shell-escape si minted nécessaire)
+$pdflatex = 'pdflatex -interaction=nonstopmode -synctex=1 %O %S';
 
-# --- Qualité de vie ---
-$preview_continuous = 1;
+# Qualité de vie
+$preview_continuous_mode = 1;
 $recorder = 1;
 $emulate_aux_dir = 1;
-

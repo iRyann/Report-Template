@@ -1,47 +1,38 @@
 \documentclass{rapportCS}
 \usepackage{lipsum}
-\title{Rapport CentraleSupelec - Template} %Titre du fichier
+
+% Charger les commandes custom si besoin
+
+%%%%%%%%%%%%%%%%%%%%%% LES PACKAGES
+% TODO : Delete .cls and refactoring
+
+%%%%%%%%%%%%%%%%%%%%%% MISE EN FORME
+\input{config/formatting}
+
+%%%%%%%%%%%%%%%%%%%%%%% LA PALETTE DE COULEURS
+\input{config/palette}
+
+%%%%%%%%%%%%%%%%%%%%%%% LES COMMANDES 
+\input{config/commands}
+
+
+\title{Rapport CentraleSupelec - Template}
 
 \begin{document}
 
 %----------- Informations du rapport ---------
 
 \logoentreprise{logos/logoGraphene.png}
-
-\titre{} % Titre du fichier
-
-\mention{Cursus ingénieur} % Nom de la Mention
-\trigrammemention{ING2} % Pour le bas de la page
-\master{Génie des Systèmes d'Information} % Nom du master
-\filiere{Seconde année} % Nom de la filière
-
-% Informations tuteurs écoles
-%%\tuteurecole{
-%    Mention : \textsc{Prénom Nom} \\
-%    prenom.nom@centralesupelec.fr \\
-%    Filière : \textsc{Prénom Nom} \\ 
-%    prénom.nom@gmail.com 
-%} 
-
-%%\tuteurentreprise{
-%    \textsc{Prénom Nom} \\
-%    prénom.nom@entreprise.com 
-%}
+\titre{Mon Titre} % FIXME: Définir le titre
+\mention{Cursus ingénieur}
+\trigrammemention{ING2}
+\master{Génie des Systèmes d'Information}
+\filiere{Seconde année}
 
 %----------- Initialisation -------------------
         
-\fairemarges %Afficher les marges
-\fairepagedegarde %Créer la page de garde
-
-%----------- Résumé -------------------
-%\vspace*{\stretch{1}}
-%\begin{center}
-%	\begin{abstract}
-%        
-%    \end{abstract}
-%\end{center}
-%\vspace*{\stretch{1}}
-%\newpage
+\fairemarges
+\fairepagedegarde
 
 %------------ Table des matières ----------------
 \newpage
@@ -50,23 +41,33 @@
 \makenomenclature
 \pagestyle{fancy}
 \fancyheadoffset{0.5cm}
-%\lhead{\includegraphics[scale=0.2]{logos/CSxParisSaclay.jpg}} %Affichage de l'image au top de la page
 \rhead{\nouppercase{\leftmark}}
 \cfoot{\textbf{\titre}}
-\rfoot{}
+\rfoot{\thepage}
 \lfoot{\trigrammemention}
 \tabledematieres 
 \clearpage
 \egroup 
 
-
 %############## Corps du rapport ##############
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+\lipsum[1-2]
+
+% Pour citer: \cite{clef_biblio}
+
+\section{Développement}
+\lipsum[3-5]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %       Bibliographie       %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
+% Décommenter si vous utilisez la biblio:
+% \bibliographystyle{plain}
+% \bibliography{biblio}
+
 \appendix
-%\include{src/annexe}
+% \include{src/annexe}
 
 \end{document}
