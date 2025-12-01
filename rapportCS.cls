@@ -1,31 +1,47 @@
-\LoadClass[a4paper,12pt]{article} % Classe du document
+\LoadClass[a4paper,12pt]{article}
 
-%--------------------- Packages ------------------------
+%--------------------- Packages de base ------------------------
 
-\RequirePackage[french]{babel} %Langue du document
-\RequirePackage[utf8]{inputenc} %Caractères spéciaux
-\RequirePackage[section]{placeins}%Pour placement de section
-\RequirePackage[T1]{fontenc} %Quelques lettres qui sont pas inclus dans UTF-8
-\RequirePackage{mathtools} %Paquet pour des équations et symboles mathématiques
-\RequirePackage{siunitx} %Pour écrire avec la notation scientifique (Ex.: \num{2e+9})
-\RequirePackage{float} %Pour placement d'images
-\RequirePackage{graphicx} %Paquet pour insérer des images
-\RequirePackage[justification=centering]{caption} %Pour les légendes centralisées
+\RequirePackage[french]{babel}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage[section]{placeins}
+
+% Maths et sciences
+\RequirePackage{mathtools}
+\RequirePackage{siunitx}
+
+% Figures et mise en page
+\RequirePackage{float}
+\RequirePackage{graphicx}
+\RequirePackage[justification=centering]{caption}
 \RequirePackage{subcaption}
 \RequirePackage{wallpaper}
+\RequirePackage[left=3cm,right=3cm,top=3cm,bottom=2cm]{geometry}
+
+% En-têtes et pieds de page
 \RequirePackage{nomencl}
 \makenomenclature
 \RequirePackage{fancyhdr}
 \pagestyle{fancy}
 \fancyheadoffset{1cm}
 \setlength{\headheight}{2cm}
-\RequirePackage{url}
-\RequirePackage[hidelinks]{hyperref}%Paquet pour insérer légendes dans des sous-figures comme Figure 1a, 1b
-\RequirePackage[left=3cm,right=3cm,top=3cm,bottom=2cm]{geometry} %Configuration de la page
-\usepackage[T1]{fontenc}
 
-\usepackage{palatino}
-\usepackage{pdfpages}
+% Hyperliens
+\RequirePackage{url}
+\RequirePackage[hidelinks]{hyperref}
+
+% Polices
+\RequirePackage{palatino}
+\RequirePackage{pdfpages}
+
+%--------------------- Packages pour config/ ------------------------
+
+\RequirePackage{xcolor}
+\RequirePackage{tikz}
+\RequirePackage{pifont}
+\RequirePackage{etoolbox}
+\RequirePackage{minted}
 
 %-------------------- Informations sur le rapport ----------------------
 
@@ -33,25 +49,19 @@
 \newcommand{\trigrammemention}[1]{\renewcommand{\trigrammemention}{#1}}
 \newcommand{\master}[1]{\renewcommand{\master}{#1}}
 \newcommand{\filiere}[1]{\renewcommand{\filiere}{#1}}
-
 \newcommand{\titre}[1]{\renewcommand{\titre}{#1}}
-
+\newcommand{\soustitre}[1]{\renewcommand{\soustitre}{#1}}
 \newcommand{\eleve}[1]{\renewcommand{\eleve}{#1}}
-
 \newcommand{\tuteurecole}[1]{\renewcommand{\tuteurecole}{#1}}
 \newcommand{\tuteurentreprise}[1]{\renewcommand{\tuteurentreprise}{#1}}
-
 \newcommand{\logoentreprise}[1]{\renewcommand{\logoentreprise}{#1}}
-
+\newcommand{\destinataire}[1]{\renewcommand{\destinataire}{#1}}
 \newcommand{\dates}[1]{\renewcommand{\dates}{#1}}
 
 \newcommand{\fairemarges}{
 \makenomenclature
 \pagestyle{fancy}
 \fancyheadoffset{0.5cm}
-
-
-
 \rhead{\nouppercase{\leftmark}}
 \rfoot{\thepage}
 \cfoot{\textbf{\titre}}
@@ -59,59 +69,69 @@
 
 \newcommand{\fairepagedegarde}{
 \begin{titlepage}
+\centering
 
+% === LOGOS ===
+\vspace*{-1cm}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+    \raggedright
+    \includegraphics[height=2.2cm]{\logoentreprise}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+    \raggedleft
+    \includegraphics[height=2.2cm]{logos/logoCS.png}
+\end{minipage}
 
-
-\centering %Centraliser le contenu
-
-% Logo Entreprise x ecole
-
-\begin{figure}
-    \begin{subfigure}{.5\textwidth}
-        %\centering
-        \includegraphics[width=1\textwidth]{\logoentreprise}\par\vspace{1cm}
-    \end{subfigure}%
-    \begin{subfigure}{.5\textwidth}
-        %\centering
-        \hfill
-        \includegraphics[width=0.6\textwidth]{logos/logoCS.png}\par\vspace{1cm} %Insertion du logo Ecole
-    \end{subfigure}
-\end{figure}
-
-
-% Titre du rapport
-\rule{\linewidth}{0.2 mm} \\[0.4 cm]
-{\huge \textbf{Title}}\par
-
-    {\LARGE \textbf{subtitle}}\par
-\rule{\linewidth}{0.2 mm} \\[1.0 cm]
-
-{\large Présenté par :}\par
-\vspace*{0.2cm}
-{\Large \textbf{Ryan BOUCHOU}}\par
-{\large Étudiant en 2\textsuperscript{e} année du cycle ingénieur}\par
-\vspace{2cm}
-
-{\large À l'attention du :}\par
-\vspace*{0.2cm}
-{\Large \textbf{Target}}\par
-{\large CY Tech --- X}\par
 \vfill
 
-% Date
-{\large Septembre 2025}\par
+% === TITRE ===
+\begin{center}
+{\color{black!80}\rule{0.9\linewidth}{1.2pt}}\\[0.6cm]
+{\Huge\bfseries \titre}\\[0.4cm]
+\ifx\soustitre\empty\else
+    {\Large \soustitre}\\[0.3cm]
+\fi
+{\color{black!80}\rule{0.9\linewidth}{1.2pt}}
+\end{center}
 
-\vspace{6cm}
+\vfill
 
-	\vfill
-	
+% === AUTEUR ===
+\begin{flushleft}
+\hspace{2cm}
+\begin{minipage}{0.7\textwidth}
+    {\large\textbf{Présenté par}}\\[0.3cm]
+    {\LARGE\textsc{\eleve}}\\[0.2cm]
+    {\normalsize\textit{\filiere}}
+\end{minipage}
+\end{flushleft}
+
+\vfill
+
+% === DESTINATAIRE ===
+\begin{flushleft}
+\hspace{2cm}
+\begin{minipage}{0.7\textwidth}
+    {\large\textbf{À l'attention de}}\\[0.3cm]
+    {\Large\destinataire}
+\end{minipage}
+\end{flushleft}
+
+\vfill
+\vfill
+
+% === DATE ===
+{\large\dates}
+
+\vspace{1cm}
 
 \end{titlepage}
 \newpage
 }
 
 \newcommand{\tabledematieres}{
-%\vspace*{5cm}
 \tableofcontents
 \newpage
 }
@@ -124,6 +144,3 @@
 \label{fig: #4}
 \end{figure}
 }
-
-
-

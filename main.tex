@@ -1,11 +1,6 @@
 \documentclass{rapportCS}
 \usepackage{lipsum}
 
-% Charger les commandes custom si besoin
-
-%%%%%%%%%%%%%%%%%%%%%% LES PACKAGES
-% TODO : Delete .cls and refactoring
-
 %%%%%%%%%%%%%%%%%%%%%% MISE EN FORME
 \input{config/formatting}
 
@@ -15,7 +10,6 @@
 %%%%%%%%%%%%%%%%%%%%%%% LES COMMANDES 
 \input{config/commands}
 
-
 \title{Rapport CentraleSupelec - Template}
 
 \begin{document}
@@ -23,11 +17,23 @@
 %----------- Informations du rapport ---------
 
 \logoentreprise{logos/logoGraphene.png}
-\titre{Mon Titre} % FIXME: Définir le titre
+
+% Titres
+\titre{Développement d'une application de gestion}
+\soustitre{Rapport de stage de 2\textsuperscript{e} année}
+
+% Informations étudiant
+\eleve{Ryan BOUCHOU}
+\filiere{Étudiant en 2\textsuperscript{e} année du cycle ingénieur --- \master}
 \mention{Cursus ingénieur}
 \trigrammemention{ING2}
 \master{Génie des Systèmes d'Information}
-\filiere{Seconde année}
+
+% Destinataire
+\destinataire{CY Tech --- Département Informatique}
+
+% Date
+\dates{Septembre 2025}
 
 %----------- Initialisation -------------------
         
@@ -54,8 +60,6 @@
 \section{Introduction}
 \lipsum[1-2]
 
-% Pour citer: \cite{clef_biblio}
-
 \section{Développement}
 \lipsum[3-5]
 
@@ -63,11 +67,9 @@
 %       Bibliographie       %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-% Décommenter si vous utilisez la biblio:
 % \bibliographystyle{plain}
 % \bibliography{biblio}
 
 \appendix
-% \include{src/annexe}
 
 \end{document}
